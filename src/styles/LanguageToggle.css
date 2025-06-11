@@ -1,0 +1,82 @@
+:root {
+    --lt-height    : 42px;
+    --lt-radius    : 999px;
+    --lt-gap       : 2px;
+    --lt-bg        : #e9eef9;
+    --lt-active    : #2e7dff;
+    --lt-active-fg : #fff;
+    --lt-text      : #4c4c4c;
+    --lt-font      : 600 0.875rem/1 'Inter', system-ui, sans-serif;
+  }
+  
+  /* container */
+  .lang-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: var(--lt-height);
+    border-radius: var(--lt-radius);
+    background: var(--lt-bg);
+    padding: 0 var(--lt-gap);
+    font: var(--lt-font);
+    user-select: none;
+    /* subtle shadow */
+    box-shadow: 0 1px 3px rgba(0,0,0,.06) inset;
+    gap: var(--lt-gap);
+  }
+  
+  /* label (“Speak”, “Hear”) */
+  .lang-toggle__label {
+    margin-right: 0.5rem;
+    font-weight: 500;
+    color: var(--lt-text);
+  }
+  
+  /* invisible radio buttons */
+  .lang-toggle__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* option buttons */
+  .lang-toggle__option {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0 0.9rem;
+    height: calc(var(--lt-height) - var(--lt-gap) * 2);
+    border-radius: var(--lt-radius);
+    cursor: pointer;
+    color: var(--lt-text);
+    transition: color .15s ease;
+  }
+  
+  .lang-toggle__option span { letter-spacing: .03em; }
+  
+  /* sliding background */
+  .lang-toggle__bg {
+    position: absolute;
+    z-index: 1;
+    top: var(--lt-gap);
+    bottom: var(--lt-gap);
+    width: 50%;
+    border-radius: var(--lt-radius);
+    background: var(--lt-active);
+    transition: transform .25s cubic-bezier(.4,.15,.3,1);
+  }
+  
+  /* move bg according to data‑active attr */
+  .lang-toggle__bg[data-active="ja"] { transform: translateX(100%); }
+  .lang-toggle__bg[data-active="en"] { transform: translateX(0%); }
+  .text-center {
+    align-items: center;
+  }
+  
+  /* active text colour */
+  #root .lang-toggle__input:checked + .lang-toggle__option {
+    color: var(--lt-active-fg);
+  }
+  

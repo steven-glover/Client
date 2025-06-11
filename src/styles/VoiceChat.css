@@ -1,0 +1,98 @@
+/* Color system */
+:root {
+  --vc-bg         : #fdfdfd;
+  --vc-primary    : #2e7dff;
+  --vc-primary-50 : #ebf2ff;
+  --vc-danger     : #d32f2f;
+  --vc-radius     : 0.5rem;
+  --vc-gap        : 1.25rem;
+  --vc-font       : 'Inter', system-ui, sans-serif;
+}
+
+/* Reset-ish */
+.vc * { box-sizing:border-box; }
+
+/* Container */
+.vc.container {
+  width: min(100%, 480px);
+  margin: 0 auto;
+  padding: var(--vc-gap);
+  font-family: var(--vc-font);
+  background: var(--vc-bg);
+  border-radius: var(--vc-radius);
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+/* Heading */
+.vc__heading { margin: 0 0 var(--vc-gap); }
+
+/* Settings row */
+.vc-settings {
+  display:flex;
+  gap:1rem;
+  justify-content:space-between;
+  margin-bottom: var(--vc-gap);
+  border:none;
+  padding:0;
+}
+.vc-settings label { display:flex; gap:.25rem; align-items:center; }
+
+/* Mic button */
+.vc-mic {
+  display:block;
+  width:100%;
+  font-size:1.125rem;
+  padding:.75rem;
+  border:2px solid var(--vc-primary);
+  background:var(--vc-primary);
+  color:#fff;
+  border-radius:var(--vc-radius);
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.vc-mic:hover { transform:translateY(-2px); box-shadow:0 4px 10px rgba(0,0,0,.1); }
+.vc-mic:disabled { opacity:.6; cursor:not-allowed; }
+.vc-mic--active {
+  animation: vc-pulse 1.2s infinite;
+}
+@keyframes vc-pulse {
+  0%   { box-shadow:0 0 0 0 var(--vc-primary-50); }
+  70%  { box-shadow:0 0 0 10px transparent; }
+  100% { box-shadow:0 0 0 0 transparent; }
+}
+
+/* Spinner */
+.vc-spinner {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.5rem;
+  padding:var(--vc-gap) 0;
+}
+.vc-spinner__dot {
+  width:24px; height:24px;
+  border:4px solid var(--vc-primary);
+  border-top-color:transparent;
+  border-radius:50%;
+  animation:vc-spin .8s linear infinite;
+}
+@keyframes vc-spin { to { transform:rotate(360deg); } }
+
+/* Response */
+.vc-response {
+  margin-top:var(--vc-gap);
+  padding:1rem;
+  background:var(--vc-primary-50);
+  border-radius:var(--vc-radius);
+}
+.vc-response__title { margin:0 0 .5rem; font-size:1rem; }
+.vc-response__text  { margin:0; line-height:1.35; }
+
+/* Error */
+.vc-error {
+  margin-top:var(--vc-gap);
+  color:var(--vc-danger);
+  font-weight:600;
+}
+
+.vc-settings { justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
